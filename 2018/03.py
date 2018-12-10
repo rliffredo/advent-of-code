@@ -15,7 +15,7 @@ def make_areas(claim):
     for y in range(claim[2], claim[2]+claim[4])]
 
 
-data = open('input_3.txt').readlines()
+data = open('input_03.txt').readlines()
 parsed = [parse(d) for d in data]
 total_counter = Counter()
 

@@ -1,4 +1,4 @@
-data = open('input_5.txt').read()
+data = open('input_05.txt').read()
 
 def fetch_next(d):
     pos = iter(d)

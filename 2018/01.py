@@ -1,4 +1,4 @@
-data = open('input_1.txt').readlines()
+data = open('input_01.txt').readlines()
 data = [d.strip() for d in data]
 data = [int(d) for d in data]
 cnt = sum(data)

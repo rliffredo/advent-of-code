@@ -20,7 +20,7 @@ def has_remaining_predecessors(step):
 def basic_order():
     return map(chr, range(ord('A'), ord('Z')+1))
 
-data = open('input_7.txt').readlines()
+data = open('input_07.txt').readlines()
 instructions = [parse(d) for d in data]
 ordered_steps = []
 all_steps = list(basic_order())

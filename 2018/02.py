@@ -1,6 +1,6 @@
 from collections import Counter
 
-data = open('input_2.txt').readlines()
+data = open('input_02.txt').readlines()
 data = [d.strip() for d in data]
 
 number_of_twos = 0

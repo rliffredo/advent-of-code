@@ -2,7 +2,7 @@
 #   - metadata: [int]
 #   - children: [nodes]
 
-data = open('input_8.txt').read()
+data = open('input_08.txt').read()
 from collections import namedtuple
 TreeNode = namedtuple('TreeNode', 'children, metadata')
 

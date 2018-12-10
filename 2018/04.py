@@ -27,7 +27,7 @@ def parse(line):
 parse.current_state = {}
 
 
-data = open('input_4.txt').readlines()
+data = open('input_04.txt').readlines()
 sleep_intervals = [interval for interval in 
                    (parse(d) for d in sorted(data))
                    if interval is not None]

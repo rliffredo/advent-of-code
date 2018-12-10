@@ -6,7 +6,7 @@ def parse_line(line):
     numbers = [int(n) for n in line.split(',')]
     return Point(x=numbers[0], y=numbers[1])
 
-data = open('input_6.txt').readlines()
+data = open('input_06.txt').readlines()
 coordinates = [parse_line(line) for line in data]
 
 max_x = max(coordinates, key=lambda p: p.x).x
