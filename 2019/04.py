@@ -4,6 +4,7 @@ from common import pairwise
 
 
 def generate_passwords(low_limit, up_limit):
+    # noinspection PyArgumentList
     return (str(pwd) for pwd in range(low_limit, up_limit + 1))
 
 
