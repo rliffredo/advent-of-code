@@ -1,15 +1,9 @@
 import intcode
 
 
-def read_data(filename):
-    f = open(filename)
-    program = f.read()
-    return program
-
-
 def execute_diag(system_id):
     computer = intcode.IntCode(lambda: system_id)
-    computer.load(read_data("data/05.txt"))
+    computer.load(intcode.read_data("data/05.txt"))
     computer.execute()
 
 

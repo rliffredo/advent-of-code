@@ -5,15 +5,10 @@ import intcode
 # ## PART 1 ## #
 ################
 
-def read_data(filename):
-    f = open(filename)
-    program = f.read()
-    return program
-
 
 def execute_1202():
     computer = intcode.IntCode()
-    computer.load(read_data("data/02.txt"))
+    computer.load(intcode.read_data("data/02.txt"))
     computer.set_params(12, 2)
     computer.execute()
     return computer.get_output()
@@ -28,7 +23,7 @@ print(f'Memory at position 0: {execute_1202()}')  # 4023471
 
 def find_params_for_19_690_720():
     computer = intcode.IntCode()
-    computer.load(read_data('data/02.txt'))
+    computer.load(intcode.read_data('data/02.txt'))
     computer.snapshot()
     for noun in range(100):
         for verb in range(100):

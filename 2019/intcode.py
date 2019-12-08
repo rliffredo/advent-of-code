@@ -1,3 +1,9 @@
+def read_data(filename):
+    f = open(filename)
+    program = f.read()
+    return program
+
+
 class Instruction:
     def __init__(self, computer, ip, instruction_info, amt_parameters):
         self.instruction_info = instruction_info
@@ -68,7 +74,7 @@ class Output(Instruction):
         super().__init__(computer, ip, instruction_info, 1)
 
     def apply(self):
-        print(self.fetch(1))
+        self.computer.output_provider(self.fetch(1))
 
 
 class JumpTrue(Instruction):
@@ -128,11 +134,12 @@ class IntCode:
         param_modes = list(reversed(full_opcode[:-2]))
         return IntCode.INSTRUCTIONS[opcode], param_modes
 
-    def __init__(self, input_provider=None, debug=False):
+    def __init__(self, input_provider=None, output_provider=None, debug=False):
         self.debug = debug
         self.program = {}
         self.backup = {}
         self.input_provider = input_provider if input_provider else lambda: 999_999_999
+        self.output_provider = output_provider if output_provider else print
 
     def load(self, program):
         self.program = {i: int(c) for i, c in enumerate(program.split(','))}
