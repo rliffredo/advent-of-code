@@ -2,15 +2,11 @@ import math
 from collections import Counter
 
 
-def read_data(filename):
-    f = open(filename)
-    digits = f.read()
-    return digits
-
-
 ################
 # ## PART 1 ## #
 ################
+from common import read_data
+
 
 def split_by_layers(digits, width, height):
     layer_size = width * height
@@ -27,7 +23,7 @@ def get_checksum(layers):
 WIDTH = 25
 HEIGHT = 6
 
-digits = read_data('data/08.txt')
+digits = read_data('08')
 
 layers = split_by_layers(digits, WIDTH, HEIGHT)
 print(f"Checksum is {get_checksum(layers)}")   # 2210

@@ -3,6 +3,7 @@ import queue
 import threading
 
 import intcode
+from common import read_data
 
 
 class Amplifier:
@@ -64,8 +65,8 @@ def best_amp_output(program, phase_range):
     return best_output, best_phases
 
 
-final_output = best_amp_output(intcode.read_data("data/07.txt"), (0, 5))
+final_output = best_amp_output(read_data("07"), (0, 5))
 print(final_output)  # 116680
 
-feedback_output = best_amp_output(intcode.read_data("data/07.txt"), (5, 10))
+feedback_output = best_amp_output(read_data("07"), (5, 10))
 print(feedback_output)  # 89603079

@@ -1,9 +1,10 @@
 import intcode
+from common import read_data
 
 
 def execute_diag(system_id):
     computer = intcode.IntCode(lambda: system_id)
-    computer.load(intcode.read_data("data/05.txt"))
+    computer.load(read_data("05"))
     computer.execute()
 
 

@@ -1,9 +1,7 @@
-from common import distance
+from common import distance, read_data
 
 
-def read_data(filename):
-    f = open(filename)
-    program = f.readlines()
+def parse_data(program):
     return program[0].split(','), program[1].split(',')
 
 
@@ -57,7 +55,7 @@ def get_smallest_intersection(intersections, p1, p2):
     return min(frequencies)
 
 
-wire_data = read_data('data/03.txt')
+wire_data = parse_data(read_data('03'))
 all_intersections, path1, path2 = get_intersections(*wire_data)
 closest = get_closest_intersection(all_intersections)
 print(f'Closest intersection was: {closest}')  # 227
