@@ -1,9 +1,10 @@
 from itertools import tee
 
 
-def read_data(day):
-    f = open(f'data/{day}.txt')
-    return f.read()
+def read_data(day, by_lines=False):
+    file_name = f'data/{day}.txt'
+    f = open(file_name)
+    return f.readlines() if by_lines else f.read()
 
 
 def distance(p1, p2):
