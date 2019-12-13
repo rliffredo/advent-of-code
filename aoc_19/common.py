@@ -1,5 +1,10 @@
 from itertools import tee
 
+try:
+    from build import intcode
+except ImportError:
+    import intcode
+
 
 def read_data(day, by_lines=False):
     file_name = f'data/{day}.txt'

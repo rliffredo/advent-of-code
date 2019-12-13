@@ -1,5 +1,4 @@
-import intcode
-from common import read_data
+from common import read_data, intcode
 
 
 def execute_diag(system_id):

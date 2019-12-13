@@ -207,10 +207,6 @@ class IntCode:
         self.ip = self.ip_backup
         self.r1 = self.r1_backup
 
-    def set_params(self, noun, verb):
-        self.memory[1] = noun
-        self.memory[2] = verb
-
     def execute(self):
         instruction = Start(self)
         while not instruction.stop:
@@ -219,9 +215,6 @@ class IntCode:
             opcode, param_modes = self.fetch(instruction_info)
             instruction = opcode(self, param_modes)
             instruction.apply()
-
-    def get_output(self):
-        return self.memory[0]
 
     def dump_memory(self, max_values=50):
         return list(self.memory.values())[:max_values]

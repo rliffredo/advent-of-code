@@ -2,8 +2,7 @@ import itertools
 import queue
 import threading
 
-import intcode
-from common import read_data
+from common import read_data, intcode
 
 
 class Amplifier:

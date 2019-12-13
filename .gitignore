@@ -1,0 +1,4 @@
+/venv/
+/.mypy_cache/
+/aoc_19/build/
+/aoc_19/__pycache__/
