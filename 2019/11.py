@@ -1,8 +1,6 @@
 import intcode
 from common import read_data
 
-program = read_data('11')
-
 
 class PainterRobot:
 
