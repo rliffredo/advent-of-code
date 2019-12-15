@@ -5,7 +5,7 @@ from collections import Counter
 ################
 # ## PART 1 ## #
 ################
-from common import read_data
+from common import read_data, print_map
 
 
 def split_by_layers(digits, width, height):
@@ -60,11 +60,9 @@ def color(p):
 
 
 def print_image(img, width, height):
-    for y in range(height):
-        line = "".join([color(img[(x, y)]) for x in range(width)])
-        print(line)
+    print_map((0, width-1, 0, height-1), lambda x, y: color(img[(x, y)]))
 
 
 image = stack_layers(layers, WIDTH, HEIGHT)
 print('')
-print_image(image, WIDTH, HEIGHT)
+print_image(image, WIDTH, HEIGHT)  # CGEGE

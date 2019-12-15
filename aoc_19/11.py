@@ -1,4 +1,4 @@
-from common import read_data, intcode
+from common import read_data, intcode, print_map, get_map_dimensions
 
 
 class PainterRobot:
@@ -29,17 +29,7 @@ class PainterRobot:
         self._switch_current_mode()
 
     def print_hull(self):
-        min_x = min(self.ship_hull.keys(), key=lambda p: p[0])[0]
-        max_x = max(self.ship_hull.keys(), key=lambda p: p[0])[0]
-        min_y = min(self.ship_hull.keys(), key=lambda p: p[1])[1]
-        max_y = max(self.ship_hull.keys(), key=lambda p: p[1])[1]
-
-        for y in range(max_y-min_y+1):
-            line = []
-            for x in range(max_x-min_x+1):
-                color = '#' if self.get_paint_color((x, y)) == 1 else ' '
-                line.append(color)
-            print(''.join(line))
+        print_map(get_map_dimensions(self.ship_hull), lambda x, y: '#' if self.get_paint_color((x, y)) == 1 else ' ')
 
     def _log_command(self, value):
         self.commands.append((self.get_paint_color(), value))

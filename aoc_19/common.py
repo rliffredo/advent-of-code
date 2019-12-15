@@ -6,6 +6,27 @@ except ImportError:
     import intcode
 
 
+def print_map(sizes, map_to_color):
+    min_x, max_x, min_y, max_y = sizes
+    for y in range(min_y, max_y+1):
+        line = []
+        for x in range(min_x, max_x+1):
+            color = map_to_color(x, y)
+            line.append(color)
+        print(''.join(line))
+
+
+def get_map_dimensions(map_2d):
+    """
+    Key is a tuple, and first two elements are (x, y)
+    """
+    min_x = min(map_2d.keys(), key=lambda p: p[0])[0]
+    max_x = max(map_2d.keys(), key=lambda p: p[0])[0]
+    min_y = min(map_2d.keys(), key=lambda p: p[1])[1]
+    max_y = max(map_2d.keys(), key=lambda p: p[1])[1]
+    return min_x, max_x, min_y, max_y
+
+
 def read_data(day, by_lines=False):
     file_name = f'data/{day}.txt'
     f = open(file_name)

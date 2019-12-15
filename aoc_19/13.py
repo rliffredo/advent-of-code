@@ -1,4 +1,4 @@
-from common import read_data, intcode
+from common import read_data, intcode, print_map
 
 
 class ArcadeCabinet:
@@ -47,9 +47,8 @@ class ArcadeCabinet:
 
     def print_screen(self):
         print(f'Score: {self.score}       Credits: {self.computer.memory[0]}')
-        for y in range(ArcadeCabinet.MAX_Y+1):
-            line = [ArcadeCabinet.TILE_TYPES[self.screen[(x, y)]] for x in range(ArcadeCabinet.MAX_X+1)]
-            print(''.join(line))
+        sizes = (0, ArcadeCabinet.MAX_X, 0, ArcadeCabinet.MAX_Y)
+        print_map(sizes, lambda x, y: ArcadeCabinet.TILE_TYPES[self.screen[(x, y)]])
 
 
 ################
