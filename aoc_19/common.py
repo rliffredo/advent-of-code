@@ -1,4 +1,4 @@
-from itertools import tee
+from itertools import tee, islice
 
 try:
     from build import intcode
@@ -37,6 +37,9 @@ def distance(p1, p2):
     return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
 
 
+######################
+# Itertools recipes
+
 def pairwise(iterable):
     """
     s -> (s0,s1), (s1,s2), (s2, s3), ...
@@ -44,3 +47,10 @@ def pairwise(iterable):
     a, b = tee(iterable)
     next(b, None)
     return zip(a, b)
+
+
+def take(n, iterable):
+    """
+    Return first n items of the iterable as a list
+    """
+    return list(islice(iterable, n))
