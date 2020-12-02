@@ -1,4 +1,6 @@
-raw_numbers = open('data/01.txt').readlines()
+from common import read_data
+
+raw_numbers = read_data("01", True)
 all_numbers = {int(n) for n in raw_numbers}
 
 
