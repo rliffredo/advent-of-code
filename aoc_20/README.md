@@ -32,3 +32,19 @@ up earlier to work on the problem had an impact on my performance :-)
 I like having decided to use a generator for representing the function. It made
 the solution much nicer to see, and the second part almost a breeze.  
 Also, I have learnt a nice new corner of python 3.8: `math.prod`.
+
+## Day 4: Passport Processing
+
+This time, I used pydantic a lot.  
+The entire exercise here was about data validation, and this is an area where
+pydantic really shy.  
+Actually, I started with simple dataclasses, but soon the lack of validation
+there led me to the full pydantic.  
+A small problem blocked me for long -- I had to solve the first exercise in a
+different way, just to debug it: as a legacy from using dataclass, I was still
+assigning `str(value)` to a non-nullable  string field; and that was enough to
+skip the validation. The field was `None`, but for some reason that was not
+detected.
+
+Overall, an easy one -- but I could have done much quicker if I had used
+pydantic from the beginning, and strictly followed its approach.
