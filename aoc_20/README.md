@@ -60,3 +60,28 @@ Just convert the string into a string of 0 and 1, and then let the built-in
 take care of its conversion.
 
 Too bad I woke up late this time, or I could have had my personal record :)
+
+## Day 6: Custom Customs
+
+Again an easy one, and again I woke up late :)
+
+Also, this time I over-engineered the first part, expecting something more from
+the second.  
+Often, the wrong abstraction (or the lack of thereof) on the first part lead to
+a much bigger effort on the second. Like usual, in in software maintenance, btw.
+That means that one of the challenges in the first part is usually to try
+guessing what the second could be.  
+In this case, I was expecting some very different kind of logic; so I introduced
+an intermediate "Form" class to hold the single answer and to which delegate the
+calculations. However, already during implementation, it turned out to be just a
+holder of a string, so this class was removed in the final clean-up. Overall, it
+did not waste too much time; however, not wasting time at all is also one of the
+challenges of AoC.
+
+In this case, the solution used extensively python sets, and the fact that a
+string is an iterable. With those two concepts, the solution is actually quite
+trivial.  
+Note that this is already the second time that I have to use a "buffered lines"
+parsing.  
+This was a hint to refactor it to a common function, which actually helped to 
+clean the code in both places.

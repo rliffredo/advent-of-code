@@ -4,7 +4,7 @@ import re
 from pydantic import BaseModel, ValidationError, validator
 from typing import Optional, List, TypeVar, Type
 
-from common import read_data
+from common import read_data, read_line_groups
 
 
 class Passport(BaseModel):
@@ -98,18 +98,10 @@ def parse_passport(buffer_lines: List[str], passport_type: Type[PassportType]) -
 
 
 def parse_data(passport_type: Type[PassportType]) -> List[PassportType]:
-    lines = read_data("04", True)
-    passports = []
-    buffer_lines = []
-    for line in lines:
-        if line:
-            buffer_lines.append(line)
-        else:
-            passport = parse_passport(buffer_lines, passport_type)
-            if passport:
-                passports.append(passport)
-            buffer_lines.clear()
-    return passports
+    line_groups = read_line_groups("04")
+    all_passports = (parse_passport(line_group, passport_type) for line_group in line_groups)
+    valid_passports = [passport for passport in all_passports if passport is not None]
+    return valid_passports
 
 
 def part_1():
@@ -122,5 +114,5 @@ def part_2():
     print(f"Total valid passports: {len(passports)}")
 
 
-part_1()
-part_2()
+part_1()  # 256
+part_2()  # 198
