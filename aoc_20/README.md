@@ -61,6 +61,7 @@ take care of its conversion.
 
 Too bad I woke up late this time, or I could have had my personal record :)
 
+
 ## Day 6: Custom Customs
 
 Again an easy one, and again I woke up late :)
@@ -85,3 +86,21 @@ Note that this is already the second time that I have to use a "buffered lines"
 parsing.  
 This was a hint to refactor it to a common function, which actually helped to 
 clean the code in both places.
+
+
+## Day 7: Handy Haversacks
+
+This time, we started with trees.  
+The first part was essentially the number of (sub) trees containing a specific
+leaf, while the second a normal traversal.
+
+For the first, I decided to use a shortcut, and just check the string itself.  
+This had the main advantage of not forcing to parse the second half of the
+rule. I was pretty sure that the second part of the exercise would have asked to
+do that, but after yesterday's experience decided to go for the easiest approach
+also because it would not have caused any additional "debt".
+
+This approach also had the advantage of validating the second part: by swapping
+the second half implementation, from a string to a dictionary, I was able to
+quickly validate the parsing. As a side effect, the second approach was
+noticeably faster -- this is not something I expected, being all short strings.
