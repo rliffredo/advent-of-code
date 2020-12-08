@@ -104,3 +104,20 @@ This approach also had the advantage of validating the second part: by swapping
 the second half implementation, from a string to a dictionary, I was able to
 quickly validate the parsing. As a side effect, the second approach was
 noticeably faster -- this is not something I expected, being all short strings.
+
+
+## Day 8: Handheld Halting
+
+It seems quite a tradition now, the VM-based puzzles, and this year is no
+exception.  
+For this reason, I took some time to clean-up the code after finishing,
+refactoring in a way that _might_ make the VM hopefully more open to changes.
+
+Maybe I should start implementing some enhancements _before_ the next puzzle,
+in order to be ready with it. For instance, memory management, more registers,
+and indirect store/load.
+
+Except for that, the puzzle was fairly straightforward. The simplification for
+finding the infinite loop (just go again on the same instruction, no matter the
+state) was really nice, because otherwise it would have been a much more complex
+problem to solve.
