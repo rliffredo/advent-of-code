@@ -134,3 +134,25 @@ solution possible worked.
 
 Sometimes, the most naive solutions are good enough. Maybe that's the learning
 for today.
+
+
+## Day 10: Adapter Array
+
+Again a short puzzle, but this time a satisfying one.  
+- First part was solvable using only python batteries (plus pairwise itertool
+  recipe): sorted, pairwise, counter.
+- Second part was solvable again using python batteries and a dynamic
+  programming approach.  
+  Note that without memoization the solution would have taken ages; this is
+  something even the description was hinting at.
+
+This is the first time I am using `functools.cached`, and I was in for a couple
+of surprises:
+- `cached` is available since 3.9 (I am still using 3.8), even if it's already
+  in 3.8 libs. Prior version can use the slightly more expensive alternative,
+  `functools.lru_cache`, with `maxsize=None` and have the same effect.
+- It is not possible to specify a key for the cache a nd the _entire_ argument
+  tuple is used as a key for the cache.  
+  This was something a bit surprising for me, and it forced me to pass a couple
+  of (fortunately read-only) parameters as global objects.
+
