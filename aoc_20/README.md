@@ -156,3 +156,19 @@ of surprises:
   This was something a bit surprising for me, and it forced me to pass a couple
   of (fortunately read-only) parameters as global objects.
 
+
+## Day 11: Seating System
+
+Today, I am pretty sure I have ended up with a sub-optimal solution.
+It takes few seconds to complete -- an _acceptable_ amount of seconds, but still
+it is not instant.  
+Furthermore, it took much more time to solve than usual, and this is another
+hint that I have chosen the wrong data structure.
+
+For part 2, I wanted to treat the map as a graph, and simply connect nodes
+skipping the floors. I decided to take the effort to refactor part 1 as well,
+because it was still useful as a test case for all the parsing (I do a lot of
+small mistakes there), but again, the slowness of the test was annoying.
+
+Overall, it came out almost at the first try; still, I cannot stop thinking that
+I could have used a better approach.
