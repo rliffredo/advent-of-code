@@ -172,3 +172,35 @@ small mistakes there), but again, the slowness of the test was annoying.
 
 Overall, it came out almost at the first try; still, I cannot stop thinking that
 I could have used a better approach.
+
+
+## Day 12: Rain Risk
+
+This was instructive!
+
+I always have issues with rotations. I know the basics, I know the general
+ideas, but when I need to start doing it, I feel like trigonometry was too far
+in the past, and I am not able to do anything.  
+So I usually navigate my way through, trying to reinvent the math.
+
+This time, I wanted to sit down, and find a better answer.
+First refactoring, was to use a matrix for the rotation. A point is a vector,
+and can be rotated my multiplying with a rotation matrix.  In our case, the
+rotation matrices are very simple, as we only rotate by 90  degrees:
+`[[0, -1][1, 0]]` and so on.  
+This first approach was very nice, and reduced the bunch of `if`s quite a lot;
+still, the code, using tuples for the coordinates was too complex.  
+So I realized that a point is a complex number; and then, in a complex number,
+we can easily extract the _phi_, and make sums like champs thanks to `cmath`.
+There is some additional issue now, related to integers: AoC uses integers only,
+but `complex` are float, so there is now the need for rounding, and the risk of
+floating point errors.  
+Anyhow, the new approach was even simpler, but it still was wasting too much
+branches  for the translations over x and y.  
+The last approach (almost) unifies all movements across all axis (x, y, rotate),
+with a much simpler dispatching.  
+It's not perfect yet, but I think it's enough for the moment.
+
+Learning items:
+- Linear algebra -- this is something I need to study again
+- `complex` and `cmath` in python -- they are really nice!

@@ -1,8 +1,8 @@
 from itertools import tee
-from typing import List
+from typing import List, Union
 
 
-def read_data(day: str, by_lines: bool = False) -> List[str]:
+def read_data(day: str, by_lines: bool = False) -> Union[List[str], str]:
     file_name = f'data/{day}.txt'
     f = open(file_name)
     data = f.read()
@@ -23,6 +23,10 @@ def read_line_groups(day: str) -> List[List[str]]:
             groups.append(buffer_lines)
             buffer_lines = []
     return groups
+
+
+def distance(p1, p2):
+    return abs(round(p1[0]) - round(p2[0])) + abs(round(p1[1]) - round(p2[1]))
 
 
 ######################
