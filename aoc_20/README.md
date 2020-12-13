@@ -204,3 +204,29 @@ It's not perfect yet, but I think it's enough for the moment.
 Learning items:
 - Linear algebra -- this is something I need to study again
 - `complex` and `cmath` in python -- they are really nice!
+
+
+## Day 13: Shuttle Search
+
+Oh, back to algebra!  
+There was a time, when I was quite proud of my algebra skills. Unfortunately,
+that was a long time ago, and I guess this is what happen when you do not
+exercise :-)
+
+Anyhow, the problem was interesting. In part 2 I immediately realized this was a
+set of equations in modulo, but I had no idea on the strategy to solve them; so
+I had to setup my own strategy.  
+In this case, the strategy involved solving the equations one by one, and then
+increasing the modulo.  
+Once I find a time `t1` solving an equation in modulo `m1`, then any solution
+for  a second equation in `m2` must also satisfy the condition `t2 == t1 (m1)`.
+And since `m1` and `m2` are prime (I did not check, but it looked so), then the
+solution must satisfy both conditions in modulo `m1*m2`.  
+From there, the implementation was quite straightforward, but not so much -- I
+was able to put few bugs here and there, that required some time to be ironed
+out.  
+For instance, the actual input had an interesting difference from the sample
+one: in the sample, all periods were higher than the desired time, while in the
+actual input there were a couple of buses with period smaller than the desired
+time. Obviously, I had a bug in my code, and I spent quite some time scratching my
+head thinking why it worked in one case, but in the other not :)
