@@ -173,6 +173,23 @@ small mistakes there), but again, the slowness of the test was annoying.
 Overall, it came out almost at the first try; still, I cannot stop thinking that
 I could have used a better approach.
 
+#### Update after Day 13
+
+Today, I took the chance to work a bit on the performance.  
+The new approach is _much_ faster, but still _slow_. I am afraid this is the
+best I can do with pure python. Tha algorithm more or less stayed the same, with
+one important optimization (trace only changed seats); maybe there _is_ another
+approach much more performant.
+
+Moving from a "pure functional" approach, with immutable data, to changes in
+place helped cutting times by half. This is a very data-intensive exercise, so
+this was quite expected.  
+Then, tracing helped cutting another second and a half, plus a bunch of other 
+small changes (including using `__slots__`, which helped gaining about 200ms) to
+arrive to a final execution time a bit lower than a couple of seconds.  
+Maybe using something like [Nuitka](https://nuitka.net/) might help, but it is
+already taking a bit too much time...
+
 
 ## Day 12: Rain Risk
 
