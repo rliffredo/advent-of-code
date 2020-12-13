@@ -37,7 +37,7 @@ def part_2(print_result: bool = True) -> int:
     # help, but I found at least one case where it was not true.
     active_buses = [(int(bus), n) for n, bus in enumerate(bus_lines) if bus != "x"]
     bus_time = abs(active_buses[-1][0] - active_buses[-1][1])
-    mcm_buses = 1
+    lcm_buses = 1
     while active_buses:
         next_bus, bus_position = active_buses.pop()
         if print_result:
@@ -49,14 +49,14 @@ def part_2(print_result: bool = True) -> int:
         # all equations so far to check the first satisfying the current one.
         # We are reasoning in modulo arithmetic, so the solution space is not
         # too big
-        for bus_time in itertools.count(bus_time, mcm_buses):
+        for bus_time in itertools.count(bus_time, lcm_buses):
             candidate_bus_time = (next_bus - bus_time) % next_bus
             if candidate_bus_time == required_time_for_bus:
                 break
         else:
             assert False, "intertools.count() is an infinite sequence"
-        # Assume that all bus numbers are prime, to simplify calculating mcm
-        mcm_buses *= next_bus
+        # Assume that all bus numbers are prime, to simplify calculating lcm
+        lcm_buses *= next_bus
     if print_result:
         print(f"Earliest timestamp is {bus_time}")
 
