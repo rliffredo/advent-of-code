@@ -40,7 +40,7 @@ def parse_data(command_class: Type[CommandType]) -> List[CommandType]:
     return [command_class(line) for line in raw_data]
 
 
-def part_1():
+def part_1(print_result: bool = True) -> int:
     commands = parse_data(MoveCommand1)
     # we use a vector for the direction
     position, direction = complex(0, 0), complex(1, 0)
@@ -48,7 +48,9 @@ def part_1():
         position, direction = command.movement(position, direction)
 
     d = distance((0, 0), (position.real, position.imag))
-    print(f"Ship moved by {d}")
+    if print_result:
+        print(f"Ship moved by {d}")
+    return d
 
 
 class MoveCommand2(MoveCommand):
@@ -65,14 +67,20 @@ class MoveCommand2(MoveCommand):
             self.movement = lambda s, w: (s + w * self.amount, w)
 
 
-def part_2():
+def part_2(print_result: bool = True) -> int:
     commands = parse_data(MoveCommand2)
     ship_position, waypoint_position = complex(0, 0), complex(10, -1)
     for command in commands:
         ship_position, waypoint_position = command.movement(ship_position, waypoint_position)
     d = distance((0, 0), (ship_position.real, ship_position.imag))
-    print(f"Ship moved by {d}")
+    if print_result:
+        print(f"Ship moved by {d}")
+    return d
 
 
-part_1()  # 759
-part_2()  # 45763
+SOLUTION_1 = 759
+SOLUTION_2 = 45763
+
+if __name__ == "__main__":
+    part_1()
+    part_2()

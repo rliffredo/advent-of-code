@@ -11,7 +11,7 @@ def parse_data() -> Tuple[int, List[str]]:
     return timestamp, bus_lines
 
 
-def part_1():
+def part_1(print_result: bool = True) -> int:
     first_time, bus_lines = parse_data()
     active_buses = sorted(int(bus_number) for bus_number in bus_lines if bus_number != "x")
     for bus_start_time in itertools.count(first_time):
@@ -21,10 +21,14 @@ def part_1():
     else:
         assert False, "intertools.count() is an infinite sequence"
     wait_time = bus_start_time - first_time
-    print(f"Waiting {wait_time} minutes for bus {first_bus} -- code: {first_bus * wait_time}")
+    result_code = first_bus * wait_time
+    if print_result:
+        print(f"Waiting {wait_time} minutes for bus {first_bus} -- code: {result_code}")
+
+    return result_code
 
 
-def part_2():
+def part_2(print_result: bool = True) -> int:
     _, bus_lines = parse_data()
     # General idea: first iterate only on the first item; as soon as we found
     # the second, let's increase the period.
@@ -36,7 +40,8 @@ def part_2():
     mcm_buses = 1
     while active_buses:
         next_bus, bus_position = active_buses.pop()
-        print(f"Analyzing bus {next_bus} at position {bus_position}")
+        if print_result:
+            print(f"Analyzing bus {next_bus} at position {bus_position}")
         # bus position might be greater than bus number, but we are reasoning
         # here in modulo bus_number, so we need to normalize it as well.
         required_time_for_bus = bus_position % next_bus
@@ -52,8 +57,15 @@ def part_2():
             assert False, "intertools.count() is an infinite sequence"
         # Assume that all bus numbers are prime, to simplify calculating mcm
         mcm_buses *= next_bus
-    print(f"Earliest timestamp is {bus_time}")
+    if print_result:
+        print(f"Earliest timestamp is {bus_time}")
+
+    return bus_time
 
 
-part_1()  # 5257
-part_2()  # 538703333547789
+SOLUTION_1 = 5257
+SOLUTION_2 = 538703333547789
+
+if __name__ == "__main__":
+    part_1()
+    part_2()

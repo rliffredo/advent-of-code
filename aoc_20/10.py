@@ -13,15 +13,18 @@ def parse_data() -> List[int]:
     return data
 
 
-def part_1():
+def part_1(print_result: bool = True) -> int:
     jolts = parse_data()
     jolt_steps = [j2 - j1 for j1, j2 in pairwise(sorted(jolts))]
     jolt_count = Counter(jolt_steps)
-    print(f"There are {jolt_count[1]} 1-steps and {jolt_count[3]} 3-steps, "
-          f"with checksum {jolt_count[1]*jolt_count[3]}")
+    jolt_checksum = jolt_count[1] * jolt_count[3]
+    if print_result:
+        print(f"There are {jolt_count[1]} 1-steps and {jolt_count[3]} 3-steps, "
+              f"with checksum {jolt_checksum}")
+    return jolt_checksum
 
 
-def part_2():
+def part_2(print_result: bool = True) -> int:
 
     jolts = set(parse_data())
     target = max(jolts)
@@ -35,8 +38,14 @@ def part_2():
         return sum(count_combinations(root+child) for child in (1, 2, 3))
 
     all_combinations = count_combinations(0)
-    print(f"There are {all_combinations} possible combinations")
+    if print_result:
+        print(f"There are {all_combinations} possible combinations")
+    return all_combinations
 
 
-part_1()
-part_2()
+SOLUTION_1 = 1984
+SOLUTION_2 = 3543369523456
+
+if __name__ == "__main__":
+    part_1()
+    part_2()

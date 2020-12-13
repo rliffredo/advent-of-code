@@ -26,18 +26,26 @@ def get_hits_in_slope(map_info, x, y):
     return sum(1 for position in slope if position in tree_map)
 
 
-def part_1():
+def part_1(print_result: bool = True) -> int:
     map_info = parse_data()
     hit_tree = get_hits_in_slope(map_info, 3, 1)
-    print(f"Trees hit: {hit_tree}")
+    if print_result:
+        print(f"Trees hit: {hit_tree}")
+    return hit_tree
 
 
-def part_2():
+def part_2(print_result: bool = True) -> int:
     map_info = parse_data()
     slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
     hit_tree = prod(get_hits_in_slope(map_info, *slope) for slope in slopes)
-    print(f"Trees hit: {hit_tree}")
+    if print_result:
+        print(f"Trees hit: {hit_tree}")
+    return hit_tree
 
 
-part_1()
-part_2()
+SOLUTION_1 = 162
+SOLUTION_2 = 3064612320
+
+if __name__ == "__main__":
+    part_1()
+    part_2()

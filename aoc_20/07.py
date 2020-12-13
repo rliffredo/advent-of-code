@@ -25,7 +25,7 @@ def parse_data() -> Mapping[str, BagRule]:
     return {rule.bag_color: rule for rule in rules}
 
 
-def part_1():
+def part_1(print_result: bool = True) -> int:
     rules = parse_data()
     possible_bags = set()
     possible_inner = {"shiny gold"}
@@ -36,10 +36,13 @@ def part_1():
         possible_bags = new_possible_bags
         possible_inner.update(new_possible_bags)
 
-    print(f"Total number of possible colors that contain shiny gold is {len(possible_bags)}")  # 274
+    possible_bags = len(possible_bags)
+    if print_result:
+        print(f"Total number of possible colors that contain shiny gold is {possible_bags}")
+    return possible_bags
 
 
-def part_2():
+def part_2(print_result: bool = True) -> int:
     rules = parse_data()
 
     def count_bags(color: str) -> int:
@@ -47,8 +50,14 @@ def part_2():
         return 1 + sum(inner_quantity * count_bags(inner_color) for inner_color, inner_quantity in inner_bags)
 
     total_bags = count_bags("shiny gold") - 1  # we already have "shiny gold"!
-    print(f"Total number of bags to buy is {total_bags}")  # 158730
+    if print_result:
+        print(f"Total number of bags to buy is {total_bags}")
+    return total_bags
 
 
-part_1()
-part_2()
+SOLUTION_1 = 274
+SOLUTION_2 = 158730
+
+if __name__ == "__main__":
+    part_1()
+    part_2()

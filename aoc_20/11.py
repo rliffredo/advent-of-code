@@ -67,10 +67,12 @@ def immediate_neighbours(seat: Seat, seat_map: SeatMap) -> None:
     seat.all_neighbours = [neighbour for neighbour in neighbours if neighbour in seat_map]
 
 
-def part_1():
+def part_1(print_result: bool = True) -> int:
     seat_map = load_seat_map(immediate_neighbours)
     free_seats = predict_free_seats(seat_map, threshold=4)
-    print(f"At the end, there are {free_seats} occupied seats (method 1)")  # 2494
+    if print_result:
+        print(f"At the end, there are {free_seats} occupied seats (method 1)")
+    return free_seats
 
 
 def visible_neighbours(seat: Seat, seat_map: SeatMap) -> None:
@@ -90,11 +92,17 @@ def visible_neighbours(seat: Seat, seat_map: SeatMap) -> None:
     seat.all_neighbours = [neighbour.position for neighbour in neighbours if neighbour]
 
 
-def part_2():
+def part_2(print_result: bool = True) -> int:
     seat_map = load_seat_map(visible_neighbours)
     free_seats = predict_free_seats(seat_map, threshold=5)
-    print(f"At the end, there are {free_seats} occupied seats (method 2)")  # 2306
+    if print_result:
+        print(f"At the end, there are {free_seats} occupied seats (method 2)")
+    return free_seats
 
 
-part_1()
-part_2()
+SOLUTION_1 = 2494
+SOLUTION_2 = 2306
+
+if __name__ == "__main__":
+    part_1()
+    part_2()

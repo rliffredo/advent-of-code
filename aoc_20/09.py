@@ -27,18 +27,19 @@ class XmasBuffer:
         return True
 
 
-def part_1():
+def part_1(print_result: bool = True) -> int:
     numbers = parse_data()
     xmas_buffer = XmasBuffer(numbers[:25])
     for n in numbers[25:]:
         if not xmas_buffer.push(n):
-            print(f"Found invalid {n}")  # 14144619
-            break
+            if print_result:
+                print(f"Found invalid {n}")
+            return n
     else:
         assert False, "There is at least one solution!"
 
 
-def part_2():
+def part_2(print_result: bool = True) -> int:
     numbers = parse_data()
     target = 14144619
     for i in range(len(numbers)):
@@ -47,10 +48,16 @@ def part_2():
             s += numbers[j]
             if s == target and j-i > 1:
                 weakness = min(numbers[i:j]) + max(numbers[i:j])
-                print(f"Found weakness {weakness} at range {i}-{j}")  # 1766397
+                if print_result:
+                    print(f"Found weakness {weakness} at range {i}-{j}")
+                return weakness
             elif s > target:
                 break
 
 
-part_1()
-part_2()
+SOLUTION_1 = 14144619
+SOLUTION_2 = 1766397
+
+if __name__ == "__main__":
+    part_1()
+    part_2()

@@ -29,21 +29,31 @@ def boarding_pass_coordinates(boarding_pass_coord: str):
     return coord
 
 
-def part_1():
+def part_1(print_result: bool = True) -> int:
     seat_ids = parse_data()
-    print(f"The max seat ID is {max(seat_ids)}")
+    max_seat_id = max(seat_ids)
+    if print_result:
+        print(f"The max seat ID is {max_seat_id}")
+    return max_seat_id
 
 
 def missing(seat_ids: Sequence[int]) -> int:
     for seat_pair in pairwise(sorted(seat_ids)):
-        if seat_pair[1] != seat_pair[0]+1:
-            return seat_pair[0]+1
+        if seat_pair[1] != seat_pair[0] + 1:
+            return seat_pair[0] + 1
 
 
-def part_2():
+def part_2(print_result: bool = True) -> int:
     seat_ids = parse_data()
-    print(f"The missing seat ID is {missing(seat_ids)}")
+    missing_seat_id = missing(seat_ids)
+    if print_result:
+        print(f"The missing seat ID is {missing_seat_id}")
+    return missing_seat_id
 
 
-part_1()
-part_2()
+SOLUTION_1 = 976
+SOLUTION_2 = 685
+
+if __name__ == "__main__":
+    part_1()
+    part_2()

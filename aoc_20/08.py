@@ -67,15 +67,17 @@ def execute_until_loop(game_boy: GameConsole) -> Tuple[bool, List[Registers]]:
     return True, states_sequence
 
 
-def part_1():
+def part_1(print_result: bool = True) -> int:
     program = GameConsole.parse_program(read_data("08", True))
     game_boy = GameConsole()
     game_boy.load(program)
     _, states_sequence = execute_until_loop(game_boy)
-    print(f"Last state before double execution: {states_sequence[-1]}")  # (528, 1331)
+    if print_result:
+        print(f"Last state before double execution: {states_sequence[-1]}")
+    return states_sequence[-1].ac
 
 
-def part_2():
+def part_2(print_result: bool = True) -> int:
     def flip_instruction(instruction: Instruction) -> Instruction:
         flipped_opcode = {Opcode.JMP: Opcode.NOP, Opcode.NOP: Opcode.JMP, Opcode.ACC: Opcode.ACC}[instruction.opcode]
         return Instruction(opcode=flipped_opcode, params=instruction.params)
@@ -91,11 +93,16 @@ def part_2():
         game_boy.load(fixed_program)
         is_looping, fixed_state_sequence = execute_until_loop(game_boy)
         if not is_looping:
-            print(f"Last state before exit: {fixed_state_sequence[-1]}")  # (622, 1121)
-            break
+            if print_result:
+                print(f"Last state before exit: {fixed_state_sequence[-1]}")
+            return fixed_state_sequence[-1].ac
     else:
         assert False, "There _is_ a solution!"
 
 
-part_1()
-part_2()
+SOLUTION_1 = 1331
+SOLUTION_2 = 1121
+
+if __name__ == "__main__":
+    part_1()
+    part_2()

@@ -34,6 +34,25 @@ def count_valid(passwords: List[PasswordInfo], test) -> int:
     return sum(1 for password in passwords if test(password))
 
 
-passwords = parse_data()
-print(f"Number of invalid passwords (approach 1): {count_valid(passwords, PasswordInfo.policy_1)}")
-print(f"Number of invalid passwords (approach 2): {count_valid(passwords, PasswordInfo.policy_2)}")
+def part_1(print_result: bool = True) -> int:
+    passwords = parse_data()
+    valid_passwords = count_valid(passwords, PasswordInfo.policy_1)
+    if print_result:
+        print(f"Number of invalid passwords (approach 1): {valid_passwords}")
+    return valid_passwords
+
+
+def part_2(print_result: bool = True) -> int:
+    passwords = parse_data()
+    valid_passwords = count_valid(passwords, PasswordInfo.policy_2)
+    if print_result:
+        print(f"Number of invalid passwords (approach 2): {valid_passwords}")
+    return valid_passwords
+
+
+SOLUTION_1 = 410
+SOLUTION_2 = 694
+
+if __name__ == "__main__":
+    part_1()
+    part_2()

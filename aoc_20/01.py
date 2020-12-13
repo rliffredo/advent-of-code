@@ -13,11 +13,13 @@ def find_pairs_for_sum(numbers, k):
         return False, 0, 0
 
 
-res = find_pairs_for_sum(all_numbers, 2020)
-if res[0]:
-    print(f"Found {res[1]} and {res[2]}, their product is {res[1]*res[2]}")
-else:
-    print("No pair found!")
+def part_1(print_result: bool = True) -> int:
+    res = find_pairs_for_sum(all_numbers, 2020)
+    assert res[0], "A pair must exists"
+    pair_product = res[1] * res[2]
+    if print_result:
+        print(f"Found {res[1]} and {res[2]}, their product is {pair_product}")
+    return pair_product
 
 
 def find_thrice_for_sum(numbers, k):
@@ -31,8 +33,19 @@ def find_thrice_for_sum(numbers, k):
     return False, 0, 0, 0
 
 
-res = find_thrice_for_sum(all_numbers, 2020)
-if res[0]:
-    print(f"Found {res[1]}, {res[2]}, {res[3]}, their product is {res[1]*res[2]*res[3]}")
-else:
-    print("No thrice found!")
+def part_2(print_result: bool = True) -> int:
+    res = find_thrice_for_sum(all_numbers, 2020)
+    assert res[0], "A thrice must exists"
+    thrice_product = res[1]*res[2]*res[3]
+    if print_result:
+        print(f"Found {res[1]}, {res[2]}, {res[3]}, their product is {thrice_product}")
+    return thrice_product
+
+
+SOLUTION_1 = 806656
+SOLUTION_2 = 230608320
+
+if __name__ == "__main__":
+    part_1()
+    part_2()
+

@@ -1,10 +1,10 @@
 import itertools
 import re
-
-from pydantic import BaseModel, ValidationError, validator
 from typing import Optional, List, TypeVar, Type
 
-from common import read_data, read_line_groups
+from pydantic import BaseModel, ValidationError, validator
+
+from common import read_line_groups
 
 
 class Passport(BaseModel):
@@ -104,15 +104,25 @@ def parse_data(passport_type: Type[PassportType]) -> List[PassportType]:
     return valid_passports
 
 
-def part_1():
+def part_1(print_result: bool = True) -> int:
     passports = parse_data(Passport)
-    print(f"Total valid passports: {len(passports)}")
+    valid_passports = len(passports)
+    if print_result:
+        print(f"Total valid passports: {valid_passports}")
+    return valid_passports
 
 
-def part_2():
+def part_2(print_result: bool = True) -> int:
     passports = parse_data(ValidatedPassport)
-    print(f"Total valid passports: {len(passports)}")
+    valid_passports = len(passports)
+    if print_result:
+        print(f"Total valid passports: {valid_passports}")
+    return valid_passports
 
 
-part_1()  # 256
-part_2()  # 198
+SOLUTION_1 = 256
+SOLUTION_2 = 198
+
+if __name__ == "__main__":
+    part_1()
+    part_2()
