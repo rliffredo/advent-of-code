@@ -245,5 +245,31 @@ out.
 For instance, the actual input had an interesting difference from the sample
 one: in the sample, all periods were higher than the desired time, while in the
 actual input there were a couple of buses with period smaller than the desired
-time. Obviously, I had a bug in my code, and I spent quite some time scratching my
-head thinking why it worked in one case, but in the other not :)
+time. Obviously, I had a bug in my code, and I spent quite some time scratching
+my head thinking why it worked in one case, but in the other not :)
+
+
+## Day 14: Docking Data
+
+OK, this was a kind of typical problem. A nice one, but not one of the best of
+this year.
+
+Part 1 was quite straightforward, but I have approached it in a bit too messy
+approach. I had some issues in making up for the correct data structure. It
+turned out that this time the data structure was almost non-existent, just a
+series of commands, and nothing to think about that. Maybe that's the reason why
+I could not grasp it initially.  
+Small piece I particularly like in this solution: the transformation of a
+"partial" mask to two "logical gates".
+
+Part 2 got me quite in panic. Reading the description, I started to expect
+instructions affecting a huge amount of memory addresses, and then I started to
+think hard about how to cope with that. I spent quite some time trying to figure
+out patterns for discerning the latest change to an address to discard all the
+previouses; but then I realized that that was not happening, that each mask was
+affecting just few addresses, and that and that a simple list was more than
+enough to manage it. Then, everything else was just flowing.
+
+Interestingly, it took a bit more time than usual to cleanup the code, after
+writing; either I am becoming more and more picky, either this time the lack of
+a strong structure for the data was making things more difficult.
