@@ -305,3 +305,12 @@ increased that cost even more; but I find it a bit disappointing that we cannot
 "hint" that this is a small number, and that elementary operations could be done
 in a much more efficient way. Maybe the assumption is that in such cases you
 would directly use numpy?
+
+Another round of optimization, this time with subsequent algorithm refactoring,
+brought to another nice speed increase.  
+The idea was to get rid of the tuple maintaining the two last times the number
+was spoken. Doing so, allowed getting rid of quite a few checks, for cases that
+were not happening any longer. Also, getting rid of the tuple allowed to reduce
+the number of object allocated, giving a good improvement as well.  
+Now, the time is down to approximately 10s, and again, the "hot path" is either
+on the increment operator (when using `while` loop) or in the for declaration.
