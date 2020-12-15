@@ -5,7 +5,7 @@ def get_spoken_after(max_turns):
     turn_numbers = {n: turn + 1 for turn, n in enumerate(INPUT)}
     spoken = 0
     for current_turn in range(len(turn_numbers)+1, max_turns):
-        last_time = turn_numbers[spoken] if spoken in turn_numbers else current_turn
+        last_time = turn_numbers.get(spoken, current_turn)
         turn_numbers[spoken] = current_turn
         spoken = current_turn - last_time
     return spoken
