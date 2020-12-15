@@ -2,19 +2,12 @@ INPUT = [9, 3, 1, 0, 8, 4]
 
 
 def get_spoken_after(max_turns):
-    # starting numbers
     turn_numbers = {n: turn + 1 for turn, n in enumerate(INPUT)}
     spoken = 0
-    # start_playing
     for current_turn in range(len(turn_numbers)+1, max_turns):
-        if spoken not in turn_numbers:
-            last_time = current_turn
-            turn_numbers[spoken] = current_turn
-        else:
-            last_time = turn_numbers[spoken]
-            turn_numbers[spoken] = current_turn
+        last_time = turn_numbers[spoken] if spoken in turn_numbers else current_turn
+        turn_numbers[spoken] = current_turn
         spoken = current_turn - last_time
-
     return spoken
 
 
