@@ -18,16 +18,7 @@ class Passport(BaseModel):
     cid: Optional[int]
 
 
-class ValidatedPassport(BaseModel):
-    byr: int
-    iyr: int
-    eyr: int
-    hgt: str
-    hcl: str
-    ecl: str
-    pid: str
-    cid: Optional[int]
-
+class ValidatedPassport(Passport):
     @validator('byr')
     def birth_year(cls, v):
         if not (1920 <= v <= 2002):

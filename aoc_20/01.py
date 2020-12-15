@@ -1,7 +1,9 @@
 from common import read_data
 
-raw_numbers = read_data("01", True)
-all_numbers = {int(n) for n in raw_numbers}
+
+def parse_data():
+    raw_numbers = read_data("01", True)
+    return {int(n) for n in raw_numbers}
 
 
 def find_pairs_for_sum(numbers, k):
@@ -14,6 +16,7 @@ def find_pairs_for_sum(numbers, k):
 
 
 def part_1(print_result: bool = True) -> int:
+    all_numbers = parse_data()
     res = find_pairs_for_sum(all_numbers, 2020)
     assert res[0], "A pair must exists"
     pair_product = res[1] * res[2]
@@ -34,6 +37,7 @@ def find_thrice_for_sum(numbers, k):
 
 
 def part_2(print_result: bool = True) -> int:
+    all_numbers = parse_data()
     res = find_thrice_for_sum(all_numbers, 2020)
     assert res[0], "A thrice must exists"
     thrice_product = res[1]*res[2]*res[3]
