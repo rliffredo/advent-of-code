@@ -273,3 +273,35 @@ enough to manage it. Then, everything else was just flowing.
 Interestingly, it took a bit more time than usual to cleanup the code, after
 writing; either I am becoming more and more picky, either this time the lack of
 a strong structure for the data was making things more difficult.
+
+
+## Day 15: Rambunctious Recitation
+
+It took my quite a while to parse the instructions. I know that in these cases I
+make quite a few mistakes, so I wanted to be extra cautious.  
+In the end, the code was quite simple. In a different language, I would have
+used recursion, but this would have hit python's limit before reaching the
+result, so I went with an iterative approach.
+
+Then I went to part 2. It looked like my code was able to do it without any
+special modification so I tried it.  
+And then I stopped after about 20 seconds, thinking that it was wrong, and that
+it needed some special optimization. So I started to trace the output, trying to
+find cycles, but with no luck.  
+Eventually, I put a progress bar -- to discover that yes, it was slow, but it
+_was_ going to give a solution, if only I were to wait a bit more.  
+
+After that, I tried to optimize the code.  
+The initial approach was taking a bit more than a minute, but it was maintaining
+a list with all the occurrences, while we needed only the last two.  
+So I swapped that with a tuple, and processing time went considerably down.  
+I was aslso able to shave a bit more time, down to about 26 seconds, using some
+of the usual tricks, like caching dictionary lookups.  
+One of the most interesting finding was that, according to profiler, most of the
+time now is spent in _subtracting two integers_ (`PyNumber_Subtract`). Now, I
+remember watching a presentation, about the costs of simple operations like
+additions, and that the support for seamless switching to infinite precision
+increased that cost even more; but I find it a bit disappointing that we cannot
+"hint" that this is a small number, and that elementary operations could be done
+in a much more efficient way. Maybe the assumption is that in such cases you
+would directly use numpy?

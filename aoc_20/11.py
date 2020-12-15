@@ -138,6 +138,8 @@ def part_2(print_result: bool = True) -> int:
 
 SOLUTION_1 = 2494
 SOLUTION_2 = 2306
+IS_SOLUTION_1_SLOW = True
+IS_SOLUTION_2_SLOW = True
 
 if __name__ == "__main__":
     part_1()
