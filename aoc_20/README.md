@@ -314,3 +314,13 @@ were not happening any longer. Also, getting rid of the tuple allowed to reduce
 the number of object allocated, giving a good improvement as well.  
 Now, the time is down to approximately 10s, and again, the "hot path" is either
 on the increment operator (when using `while` loop) or in the for declaration.
+
+
+## Day 16: Ticket Translation
+
+This was sa smaller one.  
+It looked complicated, but most of the work was actually parsing the data and 
+(mis)understanding requirements. So, almost normal daily job :-)  
+The first part was easy to translate to something nicer using `reduce`, but the
+second part still looks like a bunch of nested loops. That said, it does not
+really entice me in further analyses, like instead yesterday's puzzle.
