@@ -1,43 +1,40 @@
-import itertools
+from collections import defaultdict
 
 from common import read_data
 
 
 def parse_data(dimensions):
     raw_data = read_data("17", True)
-    return {
-        (x, y) + (0,) * (dimensions - 2)
-        for y, line in enumerate(raw_data)
-        for x, state in enumerate(line)
-        if state == "#"
-    }
+    return {(x, y) + (0,) * (dimensions - 2)
+            for y, line in enumerate(raw_data)
+            for x, state in enumerate(line)
+            if state == "#"}
 
 
 def neighbours_3d(cube):
-    return ((x, y, z)
+    return [(x, y, z)
             for x in range(cube[0] - 1, cube[0] + 2)
             for y in range(cube[1] - 1, cube[1] + 2)
-            for z in range(cube[2] - 1, cube[2] + 2)
-            if (x, y, z) != cube)
+            for z in range(cube[2] - 1, cube[2] + 2)]
 
 
 def neighbours_4d(cube):
-    neighbours = ((x, y, z, w)
+    neighbours = [(x, y, z, w)
                   for x in [cube[0] - 1, cube[0], cube[0] + 1]
                   for y in [cube[1] - 1, cube[1], cube[1] + 1]
                   for z in [cube[2] - 1, cube[2], cube[2] + 1]
-                  for w in [cube[3] - 1, cube[3], cube[3] + 1])
+                  for w in [cube[3] - 1, cube[3], cube[3] + 1]]
     return neighbours
 
 
-def will_be_active(cube, matrix, neighbours):
+def will_be_active(cube, neighbours, matrix):
     # Count neighbours.
     # This is the most performance-critical part, so we are going to use a
     # couple of small optimizations: use an explicit loop instead of a
     # generator, and exit earlier as soon as we know that there are more than
     # three neighbours
     active_neighbours = 0
-    for neighbour in neighbours(cube):
+    for neighbour in neighbours:
         if neighbour in matrix and neighbour != cube:
             active_neighbours += 1
         if active_neighbours > 3:
@@ -48,11 +45,16 @@ def will_be_active(cube, matrix, neighbours):
     return cube in matrix and active_neighbours == 2
 
 
-def play_game_of_life(turns, dimensions, neighbours):
+def play_game_of_life(turns, dimensions, get_neighbours):
     matrix = parse_data(dimensions=dimensions)
     for _ in range(turns):
-        cubes_to_evaluate = set(itertools.chain.from_iterable(neighbours(cube) for cube in matrix))
-        matrix = {cube for cube in cubes_to_evaluate if will_be_active(cube, matrix, neighbours)}
+        cube_neighbours = defaultdict(set)
+        for cube in matrix:
+            for ne in get_neighbours(cube):
+                cube_neighbours[ne].add(cube)
+        matrix = {cube
+                  for cube, neighbours in cube_neighbours.items()
+                  if will_be_active(cube, neighbours, matrix)}
     active_cubes = len(matrix)
     return active_cubes
 
@@ -73,7 +75,6 @@ def part_2(print_result: bool = True) -> int:
 
 SOLUTION_1 = 319
 SOLUTION_2 = 2324
-IS_SOLUTION_2_SLOW = True
 
 if __name__ == "__main__":
     part_1()

@@ -337,6 +337,13 @@ a problem (around two seconds).
 After a couple of optimizations, I was able to get in the below-second ballpark.
 Interestingly, the bulk optimization was to remove memoization, and instead use
 a  generator (instead of small list) with an early exit in the loop using it.
+Another optimization, made the code uglier -- but it was able to make it much
+faster (around a quarter of second) so I had to leave it. The previous solution
+was iterating over node neighbours twice: the first time to get all the
+candidates for being acttive, and then to get all their neighbours. However,
+this can be merged into one single (nested!) loop, recreating the graph. Not
+nice, but works better -- as often with performance optimizations.
+
 
 ### John Horton Conway (1937-2020)
 I remember first implementing game of life in Turbo Pascal. I should still have
