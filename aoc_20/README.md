@@ -324,3 +324,30 @@ It looked complicated, but most of the work was actually parsing the data and
 The first part was easy to translate to something nicer using `reduce`, but the
 second part still looks like a bunch of nested loops. That said, it does not
 really entice me in further analyses, like instead yesterday's puzzle.
+
+
+## Day 17: Conway Cubes
+
+This type of puzzle (or at least a variant of it) is a staple in AoC. My initial
+assumption was to optimize for performance with large sets; but then I decided
+"oh, screw it and let’s see if really part two will have thousands of
+iterations". From there, implementation was simple; and actually that was a good
+choice, because extending for part two was quite simple, and performance was not
+a problem (around two seconds).
+After a couple of optimizations, I was able to get in the below-second ballpark.
+Interestingly, the bulk optimization was to remove memoization, and instead use
+a  generator (instead of small list) with an early exit in the loop using it.
+
+### John Horton Conway (1937-2020)
+I remember first implementing game of life in Turbo Pascal. I should still have
+that code, somewhere; I am pretty sure it would make me frown for its ugliness.  
+But I remember watching those patterns, moving around the screen, and hitting
+performance limits (I did not know about complexity at the time) of my computer
+when I wanted to make a version that could fully exploit the incredibly high
+resolution of my graphic card.  
+All of that, was out of an article I read on an old "Scientific American" found
+in my father's collection.  
+Since then, I reimplemented it countless times; for my pleasure, in interviews,
+in AoC (at least in some variant). And it was always fun.  
+This time, however, it was a bit sad.  
+[RIP, Conway](https://www.scottaaronson.com/blog/?p=4732) 
