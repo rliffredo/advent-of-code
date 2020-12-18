@@ -358,3 +358,20 @@ Since then, I reimplemented it countless times; for my pleasure, in interviews,
 in AoC (at least in some variant). And it was always fun.  
 This time, however, it was a bit sad.  
 [RIP, Conway](https://www.scottaaronson.com/blog/?p=4732) 
+
+
+## Day 18: Operation Order
+
+I am not really satisfied with this one.  
+I felt panic when reading the description, and for the first time I attacked the
+problem with a "code-first" approach. Which paid off in the first phase (I got
+my first placement under 1000), but made the second part much harder to solve.  
+Eventually I cleaned up the code, and had it a bit nicer; still I am not fond of
+this approach: what is the _purpose_ opf those classes? What is the _advantage_
+of this approach against a regular expression approach, removing iteratively all
+"inner" tokens, replacing with the result?  
+The current approach has the advantage that I can represent the expression. Is
+that enough of a vantage?
+
+As usual, every year AoC exposes some part in my baggage that I need to improve.  
+This is definitely one of those case.
