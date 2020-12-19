@@ -129,8 +129,8 @@ This one was a bit... disappointing.
 The first part was OK. I did not try to brute force it, but it still _looks_
 like maintaining a round robin of pre-calculated values was the correct choice.  
 The problem is with the second part: it looked scary, so I tried to analyze the
-data and try to brute-force it. And it worked. And then, even the most naive
-solution possible worked.
+data, but with no luck. Eventually, I tried to brute-force it and it worked,
+with the most naive solution possible.
 
 Sometimes, the most naive solutions are good enough. Maybe that's the learning
 for today.
