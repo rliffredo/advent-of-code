@@ -375,3 +375,23 @@ that enough of a vantage?
 
 As usual, every year AoC exposes some part in my baggage that I need to improve.  
 This is definitely one of those case.
+
+
+## Day 19: Monster Messages
+
+This one was fun.  
+This was all about regular expression; so it would only make sense to leverage
+existing `re` module.  
+As usual, the parsing was the slowest part for me. I realize more and more that
+I am really inefficient at parsing the problems; and that I should rely more on
+regular expressions for that.
+
+I panicked when reading about part 2. It was clearly not something that I could
+describe with regular expressions, so I started to think how to roll out my own
+simplified matcher, while being really upset that I had to reengineer the
+solution again.  
+Then I realized that all I had to do was breaking the recursion, and then it was
+definitely easy -- and this was also the first time my second part was in the
+top thousand.
+
+Overall, another fun puzzle:)
