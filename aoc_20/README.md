@@ -418,6 +418,27 @@ flip/rotate them. Essentially, very similar to what was done before, but
 explicit. This led to various simplifications (especially in the first part),
 and a substantial increase in readability and performance.
 
-I spent quite some time to refine the code and improve its quality. To be
-honest, I am not 100% satisfied with the code as it is now; however, it is also
-important to set a limit -- it _should_ be already readable enough, so be it.
+More in detail, the first parts have two moments:
+- Connect all tiles
+- Corners are the only tiles with two neighbours
+
+As well, the second part:
+The idea for the second part:
+- Generate the image starting from the corner 
+- The corner must be aligned so that it's top-right
+- Move in a "serpentine" pattern and rotate/flip each tile so that it fits the
+  previous one and the one above (it looks like we need two tiles to block all
+  degrees of freedom)
+- Use set inclusion to check the dragon presence (the set of the tranlsate
+  dragon dots must be contained in the hash dots)
+
+I have still a couple of unknown: why do I have to rotate/flip the first tile,
+to be in that position? If I do not do that, I get a map that looks valid, but
+does not yield results.  
+Also, why do I need two neighboring tiles in order to determine the next one?
+I thought that it would have been enough to use just one.
+
+Anyways, I have already spent enough some time to refine the code and improve
+its quality. I am not 100% satisfied with the code as it is now, and its
+unknowns; however, it is also important to set a limit -- it works for my input,
+it _seems_ be already readable enough, so be it.
