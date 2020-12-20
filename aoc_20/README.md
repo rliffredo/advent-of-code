@@ -394,4 +394,30 @@ Then I realized that all I had to do was breaking the recursion, and then it was
 definitely easy -- and this was also the first time my second part was in the
 top thousand.
 
-Overall, another fun puzzle:)
+Overall, another fun puzzle :)
+
+
+## Day 20: Jurassic Jigsaw
+
+OK, this was a marathon.  
+I spent a _huge_ amount of time on it: to get it, then to make it faster, and
+finally to make it better.
+
+My initial assumption was to solve everything in one go: find the connected
+pieces, and rotate/flip them in the correct position.  
+That was wrong. Eventually, I got it working, but it took a huge amount of time,
+and the algorithm was very slow. Not only: since positioning on the first part
+was not reliable, I had to introduce a "fixing" phase -- but it was all just by
+accretion, and not really maintenable.
+
+Interestingly enough, once I had a working solution, I realized a much better
+approach. It was simpler to implement, with less code, less debugging, and less
+time.  
+In this new approach, I follow two steps: first, connect the pieces, and then
+flip/rotate them. Essentially, very similar to what was done before, but
+explicit. This led to various simplifications (especially in the first part),
+and a substantial increase in readability and performance.
+
+I spent quite some time to refine the code and improve its quality. To be
+honest, I am not 100% satisfied with the code as it is now; however, it is also
+important to set a limit -- it _should_ be already readable enough, so be it.
