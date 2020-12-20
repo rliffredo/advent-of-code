@@ -432,11 +432,11 @@ The idea for the second part:
 - Use set inclusion to check the dragon presence (the set of the tranlsate
   dragon dots must be contained in the hash dots)
 
-I have still a couple of unknown: why do I have to rotate/flip the first tile,
-to be in that position? If I do not do that, I get a map that looks valid, but
-does not yield results.  
-Also, why do I need two neighboring tiles in order to determine the next one?
-I thought that it would have been enough to use just one.
+I have still an unknown: why do I have to rotate/flip the first tile, to be in
+that position? If I do not do that, I get a map that looks valid, but does not
+yield results. I suspect I had some bug in determining the direction for
+scrolling the map; anyhow, the current approach (fixed directions) seems to
+bypass that issue, without side effects.
 
 Anyways, I have already spent enough some time to refine the code and improve
 its quality. I am not 100% satisfied with the code as it is now, and its

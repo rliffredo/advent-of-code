@@ -162,37 +162,30 @@ class JigsawMap:
                 position_in_map = position + complex(tile_offset_x, tile_offset_y)
                 image[position_in_map] = value
 
-        def get_next_tile(current, direction, above):
-            next_tile_direction = next((d for d in (direction, Side.SOUTH) if current.side_neighbour(d)), Side.SOUTH)
-            next_tile = current.side_neighbour(next_tile_direction)
-            next_row = next_tile_direction == Side.SOUTH
-            above_tile = current if next_row else above.side_neighbour(direction) if above else None
-            return next_tile, above_tile, next_row
+        def get_next_tile(current, direction):
+            tile = current.side_neighbour(direction)
+            return (tile, False) if tile else (current.side_neighbour(Side.SOUTH), True)
 
-        def align_tile_to_neighbours(tile_to_align, current, above, direction_x, direction_y):
-            border_column = current.map_border(direction_x) if above != current else None
-            border_row = above.map_border(direction_y) if above else None
+        def align_tile_to_previous(tile_to_align, previous, direction):
+            border = previous.map_border(direction)
             for _ in tile_to_align.apply_transformation():
-                if border_column is None or tile_to_align.map_border(direction_x.opposite) == border_column:
-                    if border_row is None or tile_to_align.map_border(direction_y.opposite) == border_row:
-                        return
+                if tile_to_align.map_border(direction.opposite) == border:
+                    return
             else:
                 assert False, "Could not reposition!"
 
-        first_tile = next(t for t in self.corner_tiles)
-        tile_size = int(math.sqrt(len(first_tile.as_image())))
+        current_tile = next(t for t in self.corner_tiles)
+        tile_size = int(math.sqrt(len(current_tile.as_image())))
         merged_image = {}
-        reposition_first_tile(first_tile)
+        reposition_first_tile(current_tile)
         direction_x = Side.EAST
-        current_tile = first_tile
-        tile_above = None
         current_row, current_column = 0, 0
         while True:
             copy_tile_to_image(current_tile, merged_image, current_column * tile_size, current_row * tile_size)
-            next_tile, tile_above, new_row = get_next_tile(current_tile, direction_x, tile_above)
+            next_tile, new_row = get_next_tile(current_tile, direction_x)
             if not next_tile:
                 break
-            align_tile_to_neighbours(next_tile, current_tile, tile_above, direction_x, Side.SOUTH)
+            align_tile_to_previous(next_tile, current_tile, Side.SOUTH if new_row else direction_x)
             # Move to next tile
             direction_x = direction_x.opposite if new_row else direction_x
             current_row += 1 if new_row else 0
