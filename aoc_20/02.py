@@ -31,7 +31,7 @@ def parse_data() -> List[PasswordInfo]:
 
 
 def count_valid(passwords: List[PasswordInfo], test) -> int:
-    return sum(1 for password in passwords if test(password))
+    return [test(password) for password in passwords].count(True)
 
 
 def part_1(print_result: bool = True) -> int:

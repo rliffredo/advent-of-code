@@ -76,7 +76,7 @@ def seat_tick(seat: Seat) -> bool:
     return False
 
 
-def predict_free_seats(seat_map: SeatMap) -> int:
+def predict_occupied_seats(seat_map: SeatMap) -> int:
     changed_nodes = seat_map
     while changed_nodes:
         seats_to_recalc = list(changed_nodes.values())
@@ -92,8 +92,8 @@ def predict_free_seats(seat_map: SeatMap) -> int:
         for seat in seats_to_recalc:
             seat.next_generation()
 
-    free_seats = sum(1 for seat in seat_map.values() if seat.state is SeatState.OCCUPIED)
-    return free_seats
+    occupied_seats = [seat.state for seat in seat_map.values()].count(SeatState.OCCUPIED)
+    return occupied_seats
 
 
 def immediate_neighbours(seat: Seat, seat_map: SeatMap) -> None:
@@ -105,10 +105,10 @@ def immediate_neighbours(seat: Seat, seat_map: SeatMap) -> None:
 
 def part_1(print_result: bool = True) -> int:
     seat_map = load_seat_map(immediate_neighbours, 4)
-    free_seats = predict_free_seats(seat_map)
+    occupied_seats = predict_occupied_seats(seat_map)
     if print_result:
-        print(f"At the end, there are {free_seats} occupied seats (method 1)")
-    return free_seats
+        print(f"At the end, there are {occupied_seats} occupied seats (method 1)")
+    return occupied_seats
 
 
 def visible_neighbours(seat: Seat, seat_map: SeatMap) -> None:
@@ -130,10 +130,10 @@ def visible_neighbours(seat: Seat, seat_map: SeatMap) -> None:
 
 def part_2(print_result: bool = True) -> int:
     seat_map = load_seat_map(visible_neighbours, 5)
-    free_seats = predict_free_seats(seat_map)
+    occupied_seats = predict_occupied_seats(seat_map)
     if print_result:
-        print(f"At the end, there are {free_seats} occupied seats (method 2)")
-    return free_seats
+        print(f"At the end, there are {occupied_seats} occupied seats (method 2)")
+    return occupied_seats
 
 
 SOLUTION_1 = 2494

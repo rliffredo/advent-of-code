@@ -23,7 +23,7 @@ def make_slope(slope_params: Tuple[int, int], map_size: Tuple[int, int]) -> Iter
 def get_hits_in_slope(map_info, x, y):
     tree_map, size_x, size_y = map_info
     slope = make_slope((x, y), (size_x, size_y))
-    return sum(1 for position in slope if position in tree_map)
+    return [position in tree_map for position in slope].count(True)
 
 
 def part_1(print_result: bool = True) -> int:

@@ -45,7 +45,7 @@ def parse_data() -> Tuple[Dict[str, Tuple[str, ...]], List[str]]:
 def part_1(print_result: bool = True) -> int:
     raw_rules, messages = parse_data()
     rule = compile_rule(0, raw_rules)
-    total_matching_messages = sum(1 for message in messages if rule.fullmatch(message))
+    total_matching_messages = len(messages) - [rule.fullmatch(message) for message in messages].count(None)
 
     if print_result:
         print(f"A total of {total_matching_messages} messages match rule 0")
@@ -60,10 +60,10 @@ def part_2(print_result: bool = True) -> int:
     }
     raw_rules.update(rules_update)
     rule = compile_rule(0, raw_rules, tuple(rules_update.keys()))
-    total_matching_messages = sum(1 for message in messages if rule.fullmatch(message))
+    total_matching_messages = len(messages) - [rule.fullmatch(message) for message in messages].count(None)
 
     if print_result:
-        print(f"A total of {total_matching_messages} messages match rule 0")
+        print(f"A total of {total_matching_messages} messages match rule 0 (after update)")
     return total_matching_messages
 
 
