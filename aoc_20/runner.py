@@ -21,7 +21,7 @@ def execute_part(file_name, day_module, part_number, skip_slow):
         result = f(False)
         elapsed_time_ms = (perf_counter_ns() - start_time) / 1_000_000
         status = "OK" if result == expected_result else "ERROR"
-    print(f"2020 Day {file_name} Part {part_number}:  {result:15} [{elapsed_time_ms: >9.3f}ms] {status}")
+    print(f"2020 Day {file_name} Part {part_number}:  {result:>38} [{elapsed_time_ms: >9.3f}ms] {status}")
 
 
 def run_all_days(skip_slow):

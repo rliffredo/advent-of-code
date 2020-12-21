@@ -442,3 +442,18 @@ Anyways, I have already spent enough some time to refine the code and improve
 its quality. I am not 100% satisfied with the code as it is now, and its
 unknowns; however, it is also important to set a limit -- it works for my input,
 it _seems_ be already readable enough, so be it.
+
+
+## Day 21: Allergen Assessment
+
+This is my least favorite type of puzzle in AoC:
+- Not really much challenging
+- Most of the effort is in understanding the requirement (without possibility
+  to ask for clarifications)
+
+In my case, I spent quite a lot of time trying to understand what the problem
+statement was; and then, I was going very cautiously to get the things right,
+since I was not sure about the problem and the strategy to use.
+
+Worth mentioning, it was maybe one of the first times I have seen a string
+output in AoC. I had to rework the general runner because of this :)
