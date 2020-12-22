@@ -457,3 +457,21 @@ since I was not sure about the problem and the strategy to use.
 
 Worth mentioning, it was maybe one of the first times I have seen a string
 output in AoC. I had to rework the general runner because of this :)
+
+
+## Day 22: Crab Combat
+
+Again, one puzzle where most of the effort was in understanding the problem
+statement. And this time, I spent a **lot** of time because I missed one detail,
+and then it appeared only after re-reading several times.  
+That detail was key in making the second part converging, whereas I spent a lot
+of time trying to cut down on the execution times. I knew that the algorithm was
+wrong, because execution times are always short, but I thought I had to find
+some clever optimization. And instead, it worked from the beginning, it just had
+to pass the correct data.
+
+Nothing really to comment on the implementation; I am not really a fan of it and
+it is a tad too slow; but after spending some time trying to make it faster and
+easier to understand, I decided to stop and move over. It's anyways interesting,
+because in the end the same algorithm (with one small flag) was able to perform
+both parts of the problem.
