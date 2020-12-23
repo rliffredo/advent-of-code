@@ -475,3 +475,37 @@ it is a tad too slow; but after spending some time trying to make it faster and
 easier to understand, I decided to stop and move over. It's anyways interesting,
 because in the end the same algorithm (with one small flag) was able to perform
 both parts of the problem.
+
+
+## Day 23: Crab Cups
+
+I think that I start to suffer the sleep deprivation, because today, again, it
+took me quite a long time to understand the problem statement.  
+Again, I thought solution for part 2 was to find some exotic optimization, when
+a simple brute force algorithm was enough -- given that you have your own linked
+list implementation.
+
+The first approach, I used a map to hold the relationships. Then I tried to use
+a linked list, and it was faster. Then I used a `dataclass` to cleanup the code,
+and it got a bit slower. Then I added `__slots__`, and it finally went under the
+20s thresholds. Still very slow, though, and I do not see many ways to improve
+in python.
+
+As a final note, the performance behavior of the solution is quite weird, as it
+gets (way!) slower over time:
+```text
+Processed (total 1000000 rounds) in 1312.959867 ms
+Processed (total 2000000 rounds) in 1367.073698 ms
+Processed (total 3000000 rounds) in 1379.457113 ms
+Processed (total 4000000 rounds) in 1531.249859 ms
+Processed (total 5000000 rounds) in 1636.412078 ms
+Processed (total 6000000 rounds) in 1735.947351 ms
+Processed (total 7000000 rounds) in 2063.629056 ms
+Processed (total 8000000 rounds) in 2474.517712 ms
+Processed (total 9000000 rounds) in 2657.081546 ms
+Processed (total 10000000 rounds) in 2917.919604 ms
+```
+There are no memory allocations in the algorithm, so no reason for getting
+slower. Also, disabling the garbage collector did not improve.
+It takes about 20 seconds, so it cannot be a matter of cpu thermal throttling.
+I still don't know what the problem could be.
