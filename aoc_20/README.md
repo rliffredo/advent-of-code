@@ -509,3 +509,30 @@ There are no memory allocations in the algorithm, so no reason for getting
 slower. Also, disabling the garbage collector did not improve.
 It takes about 20 seconds, so it cannot be a matter of cpu thermal throttling.
 I still don't know what the problem could be.
+
+
+## Day 24: Lobby Layout
+
+Another nice one.  
+I should have googled immediately for a [good approach](https://www.redblobgames.com/grids/hexagons/),
+because all my initial approaches were quite worthless; yet I think that I
+learned something good. BTW: the linked resource is definitely a trove of
+information, and I should have some reading about it. Also, I _suspect_ they had
+quite a hit in traffic today :)  
+
+I used a cube coordinates approach, and then coding the solution was quite
+straightforward. The second part, with the variant on Conway's game of life, was
+also quite straightforward, but it took me some time to optimize it almost 20x
+from the initial 20 seconds.  
+Some interesting performance notes from the exercise:
+- `[x for x in Enum]` is _very_ expensive. Changing it to a precalculated list
+  made a huge difference in performance
+- `lre_cache` is somehow disappointing. I like that I can add memoization with a
+  single line of code, yet I would expect better gains. Maybe I have wrong
+  expectations.
+
+Also, I really like today's implementation of the game. It's much cleaner (still
+maintaining the same performance) and express the rules in a better way. Maybe I
+should rewrite day 17 with this approach.  
+Parsing could be better, but it works, and I do not want to spend more time on
+that.

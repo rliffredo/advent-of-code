@@ -100,7 +100,7 @@ def part_2(print_result: bool = True) -> int:
 
 SOLUTION_1 = 78569234
 SOLUTION_2 = 565615814504
-IS_SOLUTION_2_SLOW = False
+IS_SOLUTION_2_SLOW = True
 
 if __name__ == "__main__":
     part_1()
