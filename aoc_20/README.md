@@ -536,3 +536,44 @@ maintaining the same performance) and express the rules in a better way. Maybe I
 should rewrite day 17 with this approach.  
 Parsing could be better, but it works, and I do not want to spend more time on
 that.
+
+
+## Day 25: Combo Breaker
+
+In python it felt like cheating. I mean, everything was done in `pow()` with a
+third argument for the modulo, and there was next to nothing to do in code.  
+As a mutter of facts, I solved the problem in the REPL, and _then_ I created
+some code. And -- I know I am repetitive -- it took me much more time to
+understand the problem statement than to solve it.  
+But it was fun!
+
+And with this, AoC 2020 is over.
+
+I can say, that waking up at 6am for a month has taken its toll. If I look back,
+all the last days I have been complaining about the difficulty to understand the
+problems; but that's most probably a symptom of sleep deprivation.  
+So, this is maybe the biggest learning from this experience: never skip sleep,
+because then I am much slower, in understanding, and in finding solutions.
+Hopefully, I will put this in practice :)
+
+Overall, it has been a nice AoC. Problems have been easier than last year, but
+that was OK for me. Also, I have been able to blog every day comments about the
+problem, and that's have been a nice experience.  
+Most of my solutions have been focused on readability (at least I hope!) but I
+have spent a lot of time in improving performance, and analyzing Python
+implementation.  
+Maybe, next year is going to be high time for switching to a new language.
+
+As a small side topic, this has been my usual morning routine in the last month:
+
+- Wake up at an insane hour (at least, for me)
+- Give some food to the cat
+- Take a look at the problem
+- Tell the cat that the food is fresh, and he should not meow
+- Start to work on the problem
+- Give some other food to the cat
+- Go back to the problem
+- Grab the cat and show him that everybody is still asleep, and he should not
+  wake them
+- Go back to the problem
+- Greet wife woken up by the cat
