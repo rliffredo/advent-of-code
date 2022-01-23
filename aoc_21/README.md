@@ -256,6 +256,35 @@ here it took me quite some time to do, but eventually I did it; moreover, the
 approach was good enough to quickly manage the second part as well, with almost
 no additional code required.
 
+On the learning side, I had finally the chance to play a bit with python's
+`__new__` protocol. I am not a fan of classmethods, and usually, I try to use
+staticmethods, or even normal functions whenever possible However there **are**
+cases where classmethods make sense. In this case, I implemented a factory using
+it; and the result is actually definitely nice. Essentially, `__new__` get the
+class as input; but it is not really required to use it; and then it can alter
+it and force a different one.  
+This turned out to be a nice trick, something I think I will use in the future,
+as a more pythonic way to implement the abstract factory pattern.  
+For example, where "Base" is also acting a fallback implementation:
+```python
+class Base:
+
+    def __new__(cls, *args, **kwargs):
+        behavior = args[0] or kwargs.get("foobar")
+        if behavior == 'foo':
+            cls = Foo
+        if behavior == 'bar':
+            cls = Bar
+
+        return super().__new__(cls)
+
+class Foo(Base):
+  pass
+
+class Bar(Base):
+    pass
+```
+
 
 ### Day 17: Trick Shot
 
