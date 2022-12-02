@@ -26,12 +26,11 @@ def part_2(print_result: bool = True) -> int:
     elves = parse_data()
     total_calories_per_elf = [sum(elf) for elf in elves]
     most_calories = list(sorted(total_calories_per_elf))[-3:]
-    print(most_calories)
     return sum(most_calories)
 
 
-SOLUTION_1 = -1
-SOLUTION_2 = -1
+SOLUTION_1 = 70374
+SOLUTION_2 = 204610
 
 if __name__ == "__main__":
     print(part_1())
