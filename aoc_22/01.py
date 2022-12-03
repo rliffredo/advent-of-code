@@ -1,19 +1,13 @@
+from more_itertools import split_at
+
 from common import read_data
 
 
 def parse_data():
     lines = read_data("01", True)
-    elves = []
-    current_elf = []
-    for line in lines:
-        if not line:
-            elves.append(current_elf)
-            current_elf = []
-        else:
-            current_elf.append(int(line))
-    if current_elf:
-        elves.append(current_elf)
-    return elves
+    elves_str = split_at(lines, lambda l: not l)
+    elves_int = [map(int, e) for e in elves_str]
+    return elves_int
 
 
 def part_1(print_result: bool = True) -> int:
