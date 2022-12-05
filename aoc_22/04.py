@@ -11,11 +11,8 @@ class Section:
     def __repr__(self):
         return f'{self.start}-{self.end}'
 
-    def is_inside(self, other: 'Section') -> bool:
-        return (other.start <= self.start <= other.end) and (other.start <= self.end <= other.end)
-
-    def overlaps(self, other: 'Section') -> bool:
-        return (other.start <= self.start <= other.end) or (other.start <= self.end <= other.end)
+    def overlaps(self, other: 'Section', op) -> bool:
+        return op(other.start <= boundary <= other.end for boundary in (self.start, self.end))
 
 
 def parse_data():
@@ -28,18 +25,18 @@ def parse_data():
     ))
 
 
-def checker(f):
-    return lambda pair: f(pair[0], pair[1]) or f(pair[1], (pair[0]))
+def overlap_checker(f):
+    return lambda pair: pair[0].overlaps(pair[1], f) or pair[1].overlaps(pair[0], f)
 
 
 def part_1(print_result: bool = True) -> int:
     assignments = parse_data()
-    return ilen(filter(checker(Section.is_inside), assignments))
+    return ilen(filter(overlap_checker(all), assignments))
 
 
 def part_2(print_result: bool = True) -> int:
     assignments = parse_data()
-    return ilen(filter(checker(Section.overlaps), assignments))
+    return ilen(filter(overlap_checker(any), assignments))
 
 
 SOLUTION_1 = 441
