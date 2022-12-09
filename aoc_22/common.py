@@ -30,15 +30,19 @@ def distance(p1, p2):
 
 
 # noinspection DuplicatedCode
-def print_map(sizes, map_to_color):
+def print_map(sizes, map_to_color, *, inverted_y=False):
     min_x, max_x, min_y, max_y = sizes
+    lines = []
     for y in range(min_y, max_y+1):
         line = []
         for x in range(min_x, max_x+1):
             color = map_to_color(x, y)
             line.append(color)
-        print(''.join(line))
-
+        lines.append(''.join(line))
+    if inverted_y:
+        lines.reverse()
+    for line in lines:
+        print(line)
 
 def make_map(sizes, map_to_color):
     lines = []
