@@ -18,7 +18,7 @@ def parse_motions():
     }
     return [
         (moves[line.split()[0]], int(line.split()[1]))
-        for line in read_data("09", True)
+        for line in read_data('09', True)
         if line
     ]
 
@@ -68,14 +68,14 @@ def print_rope(rope):
     print_map(map_sizes, print_point, inverted_y=True)
 
 
-def part_1(print_result: bool = True) -> int:
+def part_1(print_result: bool = False) -> int:
     motions = parse_motions()
     rope = [Point(0, 0) for _ in range(2)]
     tails = record_tail_movements(motions, rope, print_result)
     return len(tails)
 
 
-def part_2(print_result: bool = True) -> int:
+def part_2(print_result: bool = False) -> int:
     motions = parse_motions()
     rope = [Point(0, 0) for _ in range(10)]
     tails = record_tail_movements(motions, rope, print_result)
@@ -85,6 +85,6 @@ def part_2(print_result: bool = True) -> int:
 SOLUTION_1 = 5735
 SOLUTION_2 = 2478
 
-if __name__ == "__main__":
-    print(part_1())
-    print(part_2())
+if __name__ == '__main__':
+    print(part_1(True))
+    print(part_2(True))

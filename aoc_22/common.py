@@ -1,5 +1,7 @@
 from typing import List, Union
 
+from more_itertools import split_at
+
 
 # noinspection DuplicatedCode
 def read_data(day: str, by_lines: bool = False) -> Union[List[str], str]:
@@ -10,19 +12,8 @@ def read_data(day: str, by_lines: bool = False) -> Union[List[str], str]:
 
 
 def read_line_groups(day: str) -> List[List[str]]:
-    """
-    Read lines, and groups them using empty lines as separator
-    """
     lines = read_data(day, True)
-    groups = []
-    buffer_lines = []
-    for line in lines:
-        if line:
-            buffer_lines.append(line)
-        else:
-            groups.append(buffer_lines)
-            buffer_lines = []
-    return groups
+    return list(split_at(lines, lambda l: not l))
 
 
 def distance(p1, p2):
@@ -43,6 +34,7 @@ def print_map(sizes, map_to_color, *, inverted_y=False):
         lines.reverse()
     for line in lines:
         print(line)
+
 
 def make_map(sizes, map_to_color):
     lines = []

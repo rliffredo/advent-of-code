@@ -9,7 +9,7 @@ def _to_int(r):
 
 
 def parse_data():
-    lines = read_data("02", True)
+    lines = read_data('02', True)
     rounds = [l.split() for l in lines if l]
     regular_rounds = [(_to_int(r[0]), _to_int(r[1])) for r in rounds]
     return regular_rounds
@@ -27,7 +27,7 @@ def calc_round_score(opponent, me):
     return score
 
 
-def part_1(print_result: bool = True) -> int:
+def part_1() -> int:
     rounds = parse_data()
     scores = [calc_round_score(r[0], r[1]) for r in rounds]
     return sum(scores)
@@ -44,7 +44,7 @@ def calc_round_2(r):
     return calc_round_score(r[0], my_choice)
 
 
-def part_2(print_result: bool = True) -> int:
+def part_2() -> int:
     rounds = parse_data()
     scores = [calc_round_2(r) for r in rounds]
     return sum(scores)
@@ -53,7 +53,6 @@ def part_2(print_result: bool = True) -> int:
 SOLUTION_1 = 11475
 SOLUTION_2 = 16862
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(part_1())
     print(part_2())
-

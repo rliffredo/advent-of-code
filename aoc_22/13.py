@@ -6,7 +6,7 @@ from common import read_line_groups
 
 
 def parse_data():
-    packet_pairs_str = read_line_groups("13")
+    packet_pairs_str = read_line_groups('13')
     return [(json.loads(p[0]), json.loads(p[1])) for p in packet_pairs_str]
 
 
@@ -50,6 +50,6 @@ def part_2(print_result: bool = True) -> int:
 SOLUTION_1 = 6187
 SOLUTION_2 = 23520
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(part_1())
     print(part_2())

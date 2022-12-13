@@ -1,9 +1,7 @@
 import re
 from typing import List, Tuple
 
-from more_itertools import split_at
-
-from common import read_data
+from common import read_line_groups
 
 
 def parse_commands(commands_str: List[str]) -> List[Tuple[int, int, int]]:
@@ -28,8 +26,8 @@ def parse_stacks(stacks_str: List[str]):
 
 
 def parse_data():
-    lines = [line for line in read_data("05", True)]
-    stacks_str, commands_str = split_at(lines, lambda l: not l)
+    # lines = [line for line in read_data("05", True)]
+    stacks_str, commands_str = read_line_groups('05')
     return parse_stacks(stacks_str), parse_commands(commands_str)
 
 
@@ -45,7 +43,7 @@ def move_9000(cmd, stacks):
         stacks[cmd[2] - 1].append(stacks[cmd[1] - 1].pop())
 
 
-def part_1(print_result: bool = True) -> str:
+def part_1() -> str:
     stacks, commands = parse_data()
     return move_crates(move_9000, stacks, commands)
 
@@ -56,7 +54,7 @@ def move_9001(cmd, stacks):
     stacks[cmd[2] - 1].extend(moved_cranes)
 
 
-def part_2(print_result: bool = True) -> str:
+def part_2() -> str:
     stacks, commands = parse_data()
     return move_crates(move_9001, stacks, commands)
 
@@ -64,6 +62,6 @@ def part_2(print_result: bool = True) -> str:
 SOLUTION_1 = 'JDTMRWCQJ'
 SOLUTION_2 = 'VHJDDCWRD'
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(part_1())
     print(part_2())

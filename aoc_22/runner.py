@@ -18,7 +18,7 @@ def execute_part(file_name, day_module, part_number, skip_slow):
         status = "SKIPPED"
     else:
         start_time = perf_counter_ns()
-        result = f(False)
+        result = f()
         elapsed_time_ms = (perf_counter_ns() - start_time) / 1_000_000
         status = "OK" if result == expected_result else "ERROR"
     print(f"2022 Day {file_name} Part {part_number}:  {result:>38} [{elapsed_time_ms: >9.3f} ms] {status}")

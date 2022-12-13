@@ -4,7 +4,7 @@ from common import read_data
 
 
 def parse_map():
-    lines = read_data("12", True)
+    lines = read_data('12', True)
     height_map = {
         (x, y): c
         for (y, line) in enumerate(lines)
@@ -30,13 +30,13 @@ def make_access_map(height_map):
     return access_map
 
 
-def part_1(print_result: bool = True) -> int:
+def part_1() -> int:
     height_map, start_point, end_point = parse_map()
     access_map = make_access_map(height_map)
     return nx.shortest_path_length(access_map, start_point, end_point)
 
 
-def part_2(print_result: bool = True) -> int:
+def part_2() -> int:
     height_map, _, end_point = parse_map()
     access_map = make_access_map(height_map)
     paths = nx.shortest_path_length(access_map, target=end_point)
@@ -46,6 +46,6 @@ def part_2(print_result: bool = True) -> int:
 SOLUTION_1 = 425
 SOLUTION_2 = 418
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(part_1())
     print(part_2())

@@ -6,7 +6,7 @@ from common import read_data
 
 
 def parse_map():
-    lines = read_data("08", True)
+    lines = read_data('08', True)
     tree_map_r = [list(map(int, line)) for line in lines]
     tree_map_c = [list(sublist) for sublist in zip(*tree_map_r)]
     tree_map_d = {
@@ -18,7 +18,7 @@ def parse_map():
     return sizes, tree_map_r, tree_map_c, tree_map_d
 
 
-def part_1(print_result: bool = True) -> int:
+def part_1() -> int:
     def is_visible(tree: Tuple[int, int]) -> bool:
         tree_x, tree_y = tree
         tree_height = tree_map_d[tree]
@@ -70,7 +70,7 @@ def scenic_score(tree: Tuple[int, int], tree_maps) -> int:
     ))
 
 
-def part_2(print_result: bool = True) -> int:
+def part_2() -> int:
     sizes, *tree_maps = parse_map()
     scored_trees = {
         tree: scenic_score(tree, tree_maps)
@@ -82,6 +82,6 @@ def part_2(print_result: bool = True) -> int:
 SOLUTION_1 = 1672
 SOLUTION_2 = 327180
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(part_1())
     print(part_2())

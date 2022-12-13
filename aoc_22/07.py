@@ -51,15 +51,15 @@ def get_sizes(tree, predicate):
     return sizes
 
 
-def part_1(print_result: bool = True) -> int:
-    lines = read_data("07", True)
+def part_1() -> int:
+    lines = read_data('07', True)
     tree = Directory.parse_terminal_output(lines)
 
     return sum(get_sizes(tree, lambda d: d.total_size < 100000))
 
 
-def part_2(print_result: bool = True) -> int:
-    lines = read_data("07", True)
+def part_2() -> int:
+    lines = read_data('07', True)
     tree = Directory.parse_terminal_output(lines)
 
     free_space = 70000000 - tree.total_size
@@ -71,6 +71,6 @@ def part_2(print_result: bool = True) -> int:
 SOLUTION_1 = 1086293
 SOLUTION_2 = 366028
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(part_1())
     print(part_2())

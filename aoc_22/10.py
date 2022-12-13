@@ -14,7 +14,7 @@ def parse_data():
             case ['addx', amt]:
                 return [lambda _: _, lambda x: x + int(amt)]
 
-    commands = [parse_command(line) for line in read_data("10", True) if line]
+    commands = [parse_command(line) for line in read_data('10', True) if line]
     return list(itertools.chain.from_iterable(commands))
 
 
@@ -45,6 +45,6 @@ def part_2(print_result: bool = True) -> str:
 SOLUTION_1 = 14360
 SOLUTION_2 = 'BGKAEREZ'
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(part_1())
     print(part_2())

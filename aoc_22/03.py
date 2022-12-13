@@ -4,7 +4,7 @@ from common import read_data
 
 
 def parse_data():
-    return [l for l in read_data("03", True) if l]
+    return [line for line in read_data('03', True) if line]
 
 
 def item_priority(item: str):
@@ -20,7 +20,7 @@ def sum_priority_items_in_common(rucksack_grouper):
     return sum(priorities)
 
 
-def part_1(print_result: bool = True) -> int:
+def part_1() -> int:
     def group_rucksacks_by_bag(rucksacks):
         split_rucksacks = [(r[:len(r) // 2], r[len(r) // 2:]) for r in rucksacks]
         unique_rucksacks = [(set(r[0]), set(r[1])) for r in split_rucksacks]
@@ -29,7 +29,7 @@ def part_1(print_result: bool = True) -> int:
     return sum_priority_items_in_common(group_rucksacks_by_bag)
 
 
-def part_2(print_result: bool = True) -> int:
+def part_2() -> int:
     def group_rucksacks_by_team(rucksacks):
         unique_rucksacks = [set(r) for r in rucksacks]
         rucksacks_in_groups = grouper(unique_rucksacks, 3)
@@ -41,6 +41,6 @@ def part_2(print_result: bool = True) -> int:
 SOLUTION_1 = 8202
 SOLUTION_2 = 2864
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(part_1())
     print(part_2())

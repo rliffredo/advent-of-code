@@ -41,7 +41,7 @@ class Monkey:
 def parse_data(decrease_worry_level):
     monkeys = []
     current_monkey = None
-    for line in read_data("11", True):
+    for line in read_data('11', True):
         match re.split(r'[ :]', line.strip()):
             case ['']:
                 if current_monkey:
@@ -87,6 +87,6 @@ def part_2(print_result: bool = True) -> int:
 SOLUTION_1 = 78960
 SOLUTION_2 = 14561971968
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(part_1())
     print(part_2())
